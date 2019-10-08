@@ -65,7 +65,9 @@ int main(void)
   HAL_Init();
 
   /* Configure the system clock to 120 MHz */
+#if !defined(UBINOS_BSP_PRESENT)
   SystemClock_Config();
+#endif /* !defined(UBINOS_BSP_PRESENT) */
 
   /* Initialize BSP Led for LED3 */
   BSP_LED_Init(LED3);
@@ -79,6 +81,7 @@ int main(void)
       - Parity      = ODD parity
       - BaudRate    = 9600 baud
       - Hardware flow control disabled (RTS and CTS signals) */
+#if !defined(UBINOS_BSP_PRESENT)
   UartHandle.Instance        = USARTx;
   UartHandle.Init.BaudRate   = 9600;
   UartHandle.Init.WordLength = UART_WORDLENGTH_8B;
@@ -86,6 +89,15 @@ int main(void)
   UartHandle.Init.Parity     = UART_PARITY_ODD;
   UartHandle.Init.HwFlowCtl  = UART_HWCONTROL_NONE;
   UartHandle.Init.Mode       = UART_MODE_TX_RX;
+#else
+  UartHandle.Instance        = USARTx;
+  UartHandle.Init.BaudRate   = 115200;
+  UartHandle.Init.WordLength = UART_WORDLENGTH_8B;
+  UartHandle.Init.StopBits   = UART_STOPBITS_1;
+  UartHandle.Init.Parity     = UART_PARITY_NONE;
+  UartHandle.Init.HwFlowCtl  = UART_HWCONTROL_NONE;
+  UartHandle.Init.Mode       = UART_MODE_TX_RX;
+#endif /* !defined(UBINOS_BSP_PRESENT) */
   if (HAL_UART_Init(&UartHandle) != HAL_OK)
   {
     /* Initialization Error */

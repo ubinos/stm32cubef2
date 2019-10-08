@@ -14,11 +14,15 @@
 
 
 /* Variables */
+#if !defined(UBINOS_BSP_PRESENT)
 //#undef errno
 extern int errno;
+#endif /* !defined(UBINOS_BSP_PRESENT) */
+
 extern int __io_putchar(int ch) __attribute__((weak));
 extern int __io_getchar(void) __attribute__((weak));
 
+#if !defined(UBINOS_BSP_PRESENT)
 register char * stack_ptr asm("sp");
 
 char *__env[1] = { 0 };
@@ -46,6 +50,7 @@ void _exit (int status)
 	_kill(status, -1);
 	while (1) {}		/* Make sure we hang here */
 }
+#endif /* !defined(UBINOS_BSP_PRESENT) */
 
 __attribute__((weak)) int _read(int file, char *ptr, int len)
 {
@@ -70,6 +75,7 @@ __attribute__((weak)) int _write(int file, char *ptr, int len)
 	return len;
 }
 
+#if !defined(UBINOS_BSP_PRESENT)
 caddr_t _sbrk(int incr)
 {
 	extern char end asm("end");
@@ -161,3 +167,4 @@ int _execve(char *name, char **argv, char **env)
 	errno = ENOMEM;
 	return -1;
 }
+#endif /* !defined(UBINOS_BSP_PRESENT) */
