@@ -34,7 +34,7 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
-static void SystemClock_Config(void);
+void SystemClock_Config(void);
 static void EXTI15_10_IRQHandler_Config(void);
 /* Private functions ---------------------------------------------------------*/
 
@@ -54,7 +54,9 @@ int main(void)
   HAL_Init();
 
   /* Configure the system clock to 120 MHz */
+#if !defined(UBINOS_BSP_PRESENT)
   SystemClock_Config();
+#endif /* !defined(UBINOS_BSP_PRESENT) */
 
   /* -1- Initialize LEDs mounted on NUCLEO-207ZG board */
   BSP_LED_Init(LED1);
