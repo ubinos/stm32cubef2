@@ -75,7 +75,9 @@ int main(void)
   HAL_Init();
   
   /* Configure the system clock to 120 MHz */
+#if !defined(UBINOS_BSP_PRESENT)
   SystemClock_Config();
+#endif /* !defined(UBINOS_BSP_PRESENT) */
 
   /* Configure LED1, LED2 and LED3 */
   BSP_LED_Init(LED1);

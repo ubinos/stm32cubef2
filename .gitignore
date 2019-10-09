@@ -33,3 +33,9 @@ _build/
 /source/STM32Cube_FW_F2/Projects/NUCLEO-F207ZG/Examples_MIX/SPI/SPI_HalfDuplex_ComPollingIT/SW4STM32/STM32F207ZG-Nucleo/STM32F207ZG-Nucleo Debug.cfg
 /source/STM32Cube_FW_F2/Projects/NUCLEO-F207ZG/Examples_MIX/SPI/SPI_HalfDuplex_ComPollingIT/SW4STM32/STM32F207ZG-Nucleo/STM32F207ZG-Nucleo.xml
 
+/source/STM32Cube_FW_F2/Projects/NUCLEO-F207ZG/Examples_MIX/SPI/SPI_FullDuplex_ComPolling/SW4STM32/STM32F207ZG-Nucleo/.gitignore
+/source/STM32Cube_FW_F2/Projects/NUCLEO-F207ZG/Examples_MIX/SPI/SPI_FullDuplex_ComPolling/SW4STM32/STM32F207ZG-Nucleo/.settings/
+/source/STM32Cube_FW_F2/Projects/NUCLEO-F207ZG/Examples_MIX/SPI/SPI_FullDuplex_ComPolling/SW4STM32/STM32F207ZG-Nucleo/Debug/
+/source/STM32Cube_FW_F2/Projects/NUCLEO-F207ZG/Examples_MIX/SPI/SPI_FullDuplex_ComPolling/SW4STM32/STM32F207ZG-Nucleo/STM32F207ZG-Nucleo Debug.cfg
+/source/STM32Cube_FW_F2/Projects/NUCLEO-F207ZG/Examples_MIX/SPI/SPI_FullDuplex_ComPolling/SW4STM32/STM32F207ZG-Nucleo/STM32F207ZG-Nucleo.xml
+
