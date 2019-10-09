@@ -44,7 +44,7 @@ UART_HandleTypeDef UartHandle;
 #else
   #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #endif /* __GNUC__ */
-static void SystemClock_Config(void);
+void SystemClock_Config(void);
 static void Error_Handler(void);
 
 /* Private functions ---------------------------------------------------------*/
@@ -65,7 +65,9 @@ int main(void)
   HAL_Init();
   
   /* Configure the system clock to 120 MHz */
+#if !defined(UBINOS_BSP_PRESENT)
   SystemClock_Config();
+#endif /* !defined(UBINOS_BSP_PRESENT) */
    
   /*##-1- Configure the UART peripheral ######################################*/
   /* Put the USART peripheral in the Asynchronous mode (UART Mode) */
@@ -75,6 +77,7 @@ int main(void)
       - Parity = ODD parity
       - BaudRate = 9600 baud
       - Hardware flow control disabled (RTS and CTS signals) */
+#if !defined(UBINOS_BSP_PRESENT)
   UartHandle.Instance          = USARTx;
   
   UartHandle.Init.BaudRate     = 9600;
@@ -84,6 +87,17 @@ int main(void)
   UartHandle.Init.HwFlowCtl    = UART_HWCONTROL_NONE;
   UartHandle.Init.Mode         = UART_MODE_TX_RX;
   UartHandle.Init.OverSampling = UART_OVERSAMPLING_16;
+#else
+  UartHandle.Instance          = USARTx;
+
+  UartHandle.Init.BaudRate     = 115200;
+  UartHandle.Init.WordLength   = UART_WORDLENGTH_8B;
+  UartHandle.Init.StopBits     = UART_STOPBITS_1;
+  UartHandle.Init.Parity       = UART_PARITY_NONE;
+  UartHandle.Init.HwFlowCtl    = UART_HWCONTROL_NONE;
+  UartHandle.Init.Mode         = UART_MODE_TX_RX;
+  UartHandle.Init.OverSampling = UART_OVERSAMPLING_16;
+#endif /* !defined(UBINOS_BSP_PRESENT) */
     
   if(HAL_UART_Init(&UartHandle) != HAL_OK)
   {
@@ -133,7 +147,7 @@ PUTCHAR_PROTOTYPE
   * @param  None
   * @retval None
   */
-static void SystemClock_Config(void)
+void SystemClock_Config(void)
 {
   RCC_ClkInitTypeDef RCC_ClkInitStruct;
   RCC_OscInitTypeDef RCC_OscInitStruct;
