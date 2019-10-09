@@ -75,7 +75,9 @@ uint8_t  Buffercmp8(uint8_t* pBuffer1, uint8_t* pBuffer2, uint8_t BufferLength);
 int main(void)
 {
   /* Configure the system clock to 120 MHz */
+#if !defined(UBINOS_BSP_PRESENT)
   SystemClock_Config();
+#endif /* !defined(UBINOS_BSP_PRESENT) */
 
   /* Initialize LED1 */
   LED_Init();
