@@ -105,9 +105,11 @@
                is no need to call the 2 first functions listed above, since SystemCoreClock
                variable is updated automatically.
   */
+#if !defined(UBINOS_BSP_PRESENT)
   uint32_t SystemCoreClock = 12000000;
   const uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9};
   const uint8_t APBPrescTable[8]  = {0, 0, 0, 0, 1, 2, 3, 4};
+#endif /* !defined(UBINOS_BSP_PRESENT) */
 
 /**
   * @}
@@ -129,6 +131,7 @@
   * @{
   */
 
+#if !defined(UBINOS_BSP_PRESENT)
 /**
   * @brief  Setup the microcontroller system
   *         Initialize the Embedded Flash Interface, the PLL and update the 
@@ -168,6 +171,7 @@ void SystemInit(void)
   SCB->VTOR = FLASH_BASE | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal FLASH */
 #endif
 }
+#endif /* !defined(UBINOS_BSP_PRESENT) */
 
 /**
   * @brief  Update SystemCoreClock variable according to Clock Register Values.
