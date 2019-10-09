@@ -35,7 +35,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* Private function prototypes -----------------------------------------------*/
-static void SystemClock_Config(void);
+void SystemClock_Config(void);
 static void EXTILine0_Config(void);
 static void EXTILine15_10_Config(void);
 static void Error_Handler(void);
@@ -58,7 +58,9 @@ int main(void)
   HAL_Init();
   
   /* Configure the system clock to 120 MHz */
+#if !defined(UBINOS_BSP_PRESENT)
   SystemClock_Config();
+#endif /* !defined(UBINOS_BSP_PRESENT) */
   
   /* Configure LED1 and LED2 */
   BSP_LED_Init(LED1);
@@ -95,7 +97,7 @@ int main(void)
   * @param  None
   * @retval None
   */
-static void SystemClock_Config(void)
+void SystemClock_Config(void)
 {
   RCC_ClkInitTypeDef RCC_ClkInitStruct;
   RCC_OscInitTypeDef RCC_OscInitStruct;
