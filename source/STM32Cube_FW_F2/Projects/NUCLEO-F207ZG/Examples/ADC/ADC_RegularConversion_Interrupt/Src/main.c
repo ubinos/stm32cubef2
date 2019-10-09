@@ -66,7 +66,9 @@ int main(void)
   BSP_LED_Init(LED3);
 
   /* Configure the system clock to 120 MHz */
+#if !defined(UBINOS_BSP_PRESENT)
   SystemClock_Config();
+#endif /* !defined(UBINOS_BSP_PRESENT) */
 
   /*##-1- Configure the ADC peripheral #######################################*/
   AdcHandle.Instance = ADCx;
