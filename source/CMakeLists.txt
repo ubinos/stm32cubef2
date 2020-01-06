@@ -7,6 +7,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/../../ubinos/config/common.cmake")
 project(stm32cubef2)
 
 project_begin()
+project_add_library(ubinos)
 project_end()
 
 ###############################################################################
