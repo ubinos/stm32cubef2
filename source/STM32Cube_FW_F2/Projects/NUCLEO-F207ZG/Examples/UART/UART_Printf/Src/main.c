@@ -89,7 +89,7 @@ int main(void)
   UartHandle.Init.Parity     = UART_PARITY_ODD;
   UartHandle.Init.HwFlowCtl  = UART_HWCONTROL_NONE;
   UartHandle.Init.Mode       = UART_MODE_TX_RX;
-#else
+#else /* !defined(UBINOS_BSP_PRESENT) */
   UartHandle.Instance        = USARTx;
   UartHandle.Init.BaudRate   = 115200;
   UartHandle.Init.WordLength = UART_WORDLENGTH_8B;

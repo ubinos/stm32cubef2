@@ -87,7 +87,7 @@ int main(void)
   UartHandle.Init.HwFlowCtl    = UART_HWCONTROL_NONE;
   UartHandle.Init.Mode         = UART_MODE_TX_RX;
   UartHandle.Init.OverSampling = UART_OVERSAMPLING_16;
-#else
+#else /* !defined(UBINOS_BSP_PRESENT) */
   UartHandle.Instance          = USARTx;
 
   UartHandle.Init.BaudRate     = 115200;
